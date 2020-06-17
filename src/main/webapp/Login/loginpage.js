@@ -27,3 +27,22 @@ function getInfo() {
         }
     }
 }
+
+function createNewAccount() {
+    let newUsername = document.getElementById("newUsername").value;
+    let newPassword = document.getElementById("newPassword").value;
+
+    objPeople.username = newUsername;
+    objPeople.password = newPassword;
+    console.log(objPeople);
+}
+
+/* Open when someone clicks on the span element */
+function openNav() {
+    document.getElementById("createAccount").style.width = "100%";
+}
+
+/* Close when someone clicks on the "x" symbol inside the overlay */
+function closeNav() {
+    document.getElementById("createAccount").style.width = "0%";
+}

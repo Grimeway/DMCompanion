@@ -4,26 +4,75 @@
     <meta charset="UTF-8">
     <title>DM Companion</title>
     <link rel="stylesheet" type="text/css" href="mainpagecss.css">
+    <script type="text/javascript" src="mainpage.js"></script>
 </head>
 <body>
-    <div class="background">
+    <div class="heading">
         <div class="main_page_title">
             <h1>DM companion</h1>
         </div>
         <div class="navbar">
-            <a href="#home">Session</a>
-            <a href="#news">News</a>
             <div class="dropdown">
-                <button class="dropbtn">Dropdown
+                <button class="dropbtn">Session
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="mainpage.js" onclick="testFunction()">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+                    <a href="#">Save</a>
+                    <a href="#">Load</a>
+                    <a href="#">Delete</a>
                 </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Players
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="openAddPlayerDialog()">Add Player</a>
+                    <a href="#">Edit Player</a>
+                    <a href="#">Delete Player</a>
+                </div>
+            </div>
+            <a href="#news">Roll Initiative</a>
+
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="monster-section">
+            <label for="monster-search"></label>
+            <input type="text" class="monster-search" id="monster-search" onkeyup="monsterList()" placeholder="Search for Monster">
+
+            <ul id="monster-list">
+                <li><a href="#">Abaration</a></li>
+                <li><a href="#">black bear</a></li>
+                <li><a href="#">elder golden dragon</a></li>
+                <li><a href="#">goblin</a></li>
+                <li><a href="#">necromancer</a></li>
+                <li><a href="#">thief</a></li>
+            </ul>
+        </div>
+
+        <div class="players">
+            <header class="player-header">Players: </header>
+            <div id="player-container">
+
             </div>
         </div>
     </div>
+
+
+    <dialog id="add-player">
+        <input type="text" id="playerName" name="name" placeholder="Player Name"><br>
+        <input type="text" id="playerRace" name="race" placeholder="Player Race"><br>
+        <input type="text" id="playerClass" name="class" placeholder="Player Class"><br>
+        <input type="number" id="playerHealth" name="health" placeholder="Player Health"><br>
+        <input type="number" id="playerAC" name="ac" placeholder="Player Armor Class"><br>
+        <input type="number" id="playerPP" name="pp" placeholder="Player Pasive Perception"><br>
+        <input type="number" id="playerInitiative" name="initiative" placeholder="Player initiative"><br>
+
+        <button type="button" onclick="addPlayer()">Add Player</button>
+        <button type="button" onclick="closeDialog()">Close</button>
+    </dialog>
+
 </body>
 </html>

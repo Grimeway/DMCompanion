@@ -1,3 +1,49 @@
+body {
+    background: linear-gradient(-135deg, #F2E6CC, #F7F1E3);
+}
+
+.heading {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-template-rows: auto 2fr;
+    grid-template-areas:
+        "title title title"
+        "navbar navbar navbar";
+}
+
+.main_page_title {
+    grid-area: title;
+}
+
+.navbar {
+    grid-area: navbar;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-template-rows: 2fr 1fr 2fr;
+    grid-template-areas:
+        "search blank player"
+        "search blank player"
+        "search blank player";
+}
+
+.monster-section {
+    grid-area: search;
+    background: linear-gradient(-135deg, #F2E6CC, #F7F1E3);
+}
+
+.players {
+    background: linear-gradient(-135deg, #F2E6CC, #F7F1E3);
+    grid-area: player;
+}
+
+
+
+
+
+/*--------nav bar---------*/
 /* Navbar container */
 .navbar {
     overflow: hidden;
@@ -66,4 +112,45 @@
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+
+
+/*----------search bar---------*/
+#monster-search {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#monster-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#monster-list li a {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block
+}
+
+#monster-list li a:hover:not(.header) {
+    background-color: #eee;
+}
+
+/*---------add player secion---------*/
+.player-header {
+    font-size: large;
+    font-weight: bold;
 }

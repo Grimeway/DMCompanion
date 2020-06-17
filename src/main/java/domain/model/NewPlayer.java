@@ -1,5 +1,7 @@
+package domain.model;
+
 public class NewPlayer {
-    private String PlayerName;
+    private String playerName;
     private String playerRace;
     private String playerClass;
     private int playerHealth;
@@ -8,7 +10,7 @@ public class NewPlayer {
     private int playerInitiative;
 
     public NewPlayer(String playerName, String playerRace, String playerClass, int playerHealth, int playerAC, int playerPP, int playerInitiative) {
-        PlayerName = playerName;
+        this.playerName = playerName;
         this.playerRace = playerRace;
         this.playerClass = playerClass;
         this.playerHealth = playerHealth;
@@ -18,7 +20,7 @@ public class NewPlayer {
     }
 
     public String getPlayerName() {
-        return PlayerName;
+        return playerName;
     }
 
     public String getPlayerRace() {
