@@ -1,6 +1,6 @@
 package domain.webservices;
 
-import domain.model.NewPlayer;
+import domain.model.Player;
 import domain.model.SaveFile;
 
 import javax.json.Json;
@@ -36,7 +36,7 @@ public class PlayerResource {
         int playerPP = Integer.parseInt(structure.getString("playerPP"));
         int playerInitiative = Integer.parseInt(structure.getString("playerInitiative"));
 
-        SaveFile.getSaveFile().getPlayerList().add(new NewPlayer(playerName, playerRace, playerClass, playerHealth, playerAC, playerPP, playerInitiative));
+        SaveFile.getSaveFile().getPlayerList().add(new Player(playerName, playerRace, playerClass, playerHealth, playerAC, playerPP, playerInitiative));
 
         JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
         jsonObjectBuilder.add("message", structure);
@@ -46,7 +46,7 @@ public class PlayerResource {
 
     @DELETE
     @Path("/{id}")
-    public void deletePlayer(@PathParam("id") Integer id) {
-
+    public void deletePlayer(@PathParam("id") String playerName) {
+        SaveFile.getSaveFile().removePlayer(playerName);
     }
 }

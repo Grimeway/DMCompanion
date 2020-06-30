@@ -12,79 +12,41 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <div>
-                <img src="loginDragon.png" class="login_png" alt="Login_img">
-            </div>
 
-            <div>
-                <img src="DMBanner.jpg" class="DMbanner_png" alt="banner_img">
-            </div>
-
-            <form class="login100-form validate-form">
+            <header class="top-title">
+                <div class="DMbanner_png">
+                    <img src="dungeons-and-dragons-banner.jpg" class="DMbanner_png-img" alt="banner_img">
+                </div>
 
                 <div class="login100-title">
                     <h1>DM Companion</h1>
                 </div>
+            </header>
 
-                <div class="wrap-input100 validate-input" data-validate = "Valid login is required">
-                    <input id="username" class="username" type="text" name="email" placeholder="Login">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-                </div>
+            <main class="login-container">
+                <div class="white-box">
+                    <img src="loginDragon.JPG" class="login-img">
+                    <div class="login-form">
+                        <p id="error-message">Please enter login and password</p>
+                        <label for="login"></label>
+                        <input type="text" class="login" id="login" placeholder="Login">
 
-                <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                    <input id="password" class="password" type="password" name="pass" placeholder="Password">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-                </div>
+                        <label for="password"></label>
+                        <input type="password" class="password" id="password" placeholder="Password">
 
-                <div class="container-login100-form-btn">
-                    <button type="button" onclick="getInfo()" class="login100-form-btn">
-                        Login
-                    </button>
-                </div>
+                        <button type="button" class="login-button" onclick="getInfo()">Login</button>
+                        <button type="button" class="create-new-account" onclick="openDialog()">Create new account</button>
 
-                <!-- The overlay-->
-                <div id="createAccount" class="overlay">
-
-                    <!-- Button to close the overlay navigation -->
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-                    <!-- Overlay content -->
-                    <div class="overlay-content">
-
-                        <input id="newUsername" class="newUsername" type="text" placeholder="Username">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
-
-                        <input id="newPassword" class="newPassword" type="text" placeholder="Password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
-
-                        <div class="container-login100-form-btn">
-                            <button type="button" onclick="createNewAccount()" class="login100-form-btn">
-                                Create new account
-                            </button>
-                        </div>
+                        <dialog id="new-account-dialog">
+                            <input type="text" class="newLogin" id="newLogin" placeholder="Login">
+                            <input type="password" class="newPassword" id="newPassword" placeholder="Password">
+                            <button type="button" class="create-new-account" onclick="createNewAccount()">Create your account</button>
+                            <button type="button" class="close-create-account" onclick="closeDialog()">Close</button>
+                        </dialog>
                     </div>
-
                 </div>
+            </main>
 
-                <div class="text-center p-t-136">
-                    <a class="txt2" href="#" onclick="openNav()">
-                        Create your Account
-                        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </form>
         </div>
     </div>
 </div>

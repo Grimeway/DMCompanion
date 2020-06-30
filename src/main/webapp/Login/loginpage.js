@@ -1,48 +1,46 @@
-let objPeople = [
-    {
-        username: "sam",
-        password: "codify"
-    },
-    {
-        username: "michel",
-        password: "kaas"
-    },
-    {
-        username: "jeroen",
-        password: "worst"
+async function getInfo() {
+    let url = "/restservices/login/user/" + document.getElementById("login").value + "/" + document.getElementById("password").value;
+    let response = await fetch(url);
+    console.log(response);
+    let myJson = await response.json();
+    console.log(myJson);
+
+    if (myJson) {
+        window.location.href = "http://localhost:8080/mainpage/mainpage.html";
+    } else {
+        document.getElementById("error-message").innerHTML = "Wrong Username or password";
     }
-];
 
-function getInfo() {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
 
-    for (let i = 0; i < objPeople.length; i++) {
-        if (username == objPeople[i].username && password == objPeople[i].password) {
-            console.log(username + " is logged in!!");
-            window.location.href = "http://localhost:8080/mainpage/mainpage.html";
-            break;
-        } else  {
-            console.log("login failed try again")
-        }
-    }
 }
 
-function createNewAccount() {
-    let newUsername = document.getElementById("newUsername").value;
-    let newPassword = document.getElementById("newPassword").value;
+async function createNewAccount() {
+    let data = {
+        "login": (document.getElementById("newLogin").value),
+        "password": (document.getElementById("newPassword").value),
+    };
 
-    objPeople.username = newUsername;
-    objPeople.password = newPassword;
-    console.log(objPeople);
+    const response = await fetch("/restservices/login/managed-login", {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+    }).then(function (response) {
+        console.log(typeof response);
+        return response.json();
+    }).then(function (body) {
+        console.log(body);
+    });
+    closeDialog();
+    document.getElementById("error-message").innerHTML = "Account created, you can login now using your new login and password";
+    return response;
 }
 
-/* Open when someone clicks on the span element */
-function openNav() {
-    document.getElementById("createAccount").style.width = "100%";
+function openDialog() {
+    document.getElementById("new-account-dialog").show();
 }
 
-/* Close when someone clicks on the "x" symbol inside the overlay */
-function closeNav() {
-    document.getElementById("createAccount").style.width = "0%";
+function closeDialog() {
+    document.getElementById("new-account-dialog").close();
 }

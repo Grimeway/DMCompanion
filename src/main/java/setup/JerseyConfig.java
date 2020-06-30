@@ -12,6 +12,5 @@ public class JerseyConfig extends ResourceConfig {
         packages("domain.webservices");
         register(JacksonFeature.class);
 
-
     }
 }

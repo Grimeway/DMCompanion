@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>DM Companion</title>
-    <link rel="stylesheet" type="text/css" href="mainpagecss.css">
+    <link rel="stylesheet" type="text/css" href="mainpage.css">
     <script type="text/javascript" src="mainpage.js"></script>
 </head>
 <body>
@@ -38,19 +38,22 @@
     </div>
 
     <div class="main">
-        <div class="monster-section">
+        <div class="monster-list">
             <label for="monster-search"></label>
             <input type="text" class="monster-search" id="monster-search" onkeyup="monsterList()" placeholder="Search for Monster">
 
             <ul id="monster-list">
-                <li><a href="#">Abaration</a></li>
-                <li><a href="#">black bear</a></li>
-                <li><a href="#">elder golden dragon</a></li>
-                <li><a href="#">goblin</a></li>
-                <li><a href="#">necromancer</a></li>
-                <li><a href="#">thief</a></li>
+
             </ul>
         </div>
+
+        <div class="monster-section">
+            <header class="monster-header">Monsters: </header>
+            <div id="monster-container">
+
+            </div>
+        </div>
+
 
         <div class="players">
             <header class="player-header">Players: </header>
@@ -58,21 +61,24 @@
 
             </div>
         </div>
+
+        <dialog id="add-player">
+            <input type="text" id="playerName" name="name" placeholder="Player Name"><br>
+            <input type="text" id="playerRace" name="race" placeholder="Player Race"><br>
+            <input type="text" id="playerClass" name="class" placeholder="Player Class"><br>
+            <input type="number" id="playerHealth" name="health" placeholder="Player Health"><br>
+            <input type="number" id="playerAC" name="ac" placeholder="Player Armor Class"><br>
+            <input type="number" id="playerPP" name="pp" placeholder="Player Pasive Perception"><br>
+            <input type="number" id="playerInitiative" name="initiative" placeholder="Player initiative"><br>
+
+            <button type="button" onclick="addPlayer()">Add Player</button>
+            <button type="button" onclick="closeDialog()">Close</button>
+        </dialog>
+
     </div>
 
 
-    <dialog id="add-player">
-        <input type="text" id="playerName" name="name" placeholder="Player Name"><br>
-        <input type="text" id="playerRace" name="race" placeholder="Player Race"><br>
-        <input type="text" id="playerClass" name="class" placeholder="Player Class"><br>
-        <input type="number" id="playerHealth" name="health" placeholder="Player Health"><br>
-        <input type="number" id="playerAC" name="ac" placeholder="Player Armor Class"><br>
-        <input type="number" id="playerPP" name="pp" placeholder="Player Pasive Perception"><br>
-        <input type="number" id="playerInitiative" name="initiative" placeholder="Player initiative"><br>
 
-        <button type="button" onclick="addPlayer()">Add Player</button>
-        <button type="button" onclick="closeDialog()">Close</button>
-    </dialog>
 
 </body>
 </html>

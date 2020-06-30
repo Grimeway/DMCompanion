@@ -13,6 +13,7 @@ body {
 
 .main_page_title {
     grid-area: title;
+    justify-self: center;
 }
 
 .navbar {
@@ -24,12 +25,12 @@ body {
     grid-template-columns: 2fr 2fr 2fr;
     grid-template-rows: 2fr 1fr 2fr;
     grid-template-areas:
-        "search blank player"
-        "search blank player"
-        "search blank player";
+            "search monster player"
+            "search monster player"
+            "search monster player";
 }
 
-.monster-section {
+.monster-list {
     grid-area: search;
     background: linear-gradient(-135deg, #F2E6CC, #F7F1E3);
 }
@@ -37,6 +38,19 @@ body {
 .players {
     background: linear-gradient(-135deg, #F2E6CC, #F7F1E3);
     grid-area: player;
+}
+
+#add-player {
+    grid-area: monster;
+}
+
+.monster-section {
+    grid-area: monster;
+}
+
+.monster-header {
+    font-size: large;
+    font-weight: bold;
 }
 
 
@@ -118,10 +132,9 @@ body {
 
 /*----------search bar---------*/
 #monster-search {
-    background-image: url('/css/searchicon.png');
     background-position: 10px 12px;
     background-repeat: no-repeat;
-    width: 100%;
+    width: 87%;
     font-size: 16px;
     padding: 12px 20px 12px 40px;
     border: 1px solid #ddd;

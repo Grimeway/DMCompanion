@@ -1,6 +1,6 @@
 package domain.model;
 
-public class NewPlayer {
+public class Player {
     private String playerName;
     private String playerRace;
     private String playerClass;
@@ -9,7 +9,7 @@ public class NewPlayer {
     private int playerPP;
     private int playerInitiative;
 
-    public NewPlayer(String playerName, String playerRace, String playerClass, int playerHealth, int playerAC, int playerPP, int playerInitiative) {
+    public Player(String playerName, String playerRace, String playerClass, int playerHealth, int playerAC, int playerPP, int playerInitiative) {
         this.playerName = playerName;
         this.playerRace = playerRace;
         this.playerClass = playerClass;
