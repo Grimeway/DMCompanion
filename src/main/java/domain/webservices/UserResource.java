@@ -42,7 +42,7 @@ public class UserResource {
         UserManager.getAllUsers().add(new User(login, password));
 
         //write to json file
-        UserManager.writeToFile();
+        UserManager.getUserManager().writeToFile();
 
         JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
         jsonObjectBuilder.add("message", structure);
