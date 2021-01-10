@@ -47,8 +47,6 @@ public class PlayerResource {
     @DELETE
     @Path("/{id}")
     public void deletePlayer(@PathParam("id") String playerName) {
-        System.out.println(SaveFile.getSaveFile().getPlayerList());
         SaveFile.getSaveFile().removePlayer(playerName);
-        System.out.println("lol hier komt die wel hehehhe");
     }
 }
