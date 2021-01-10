@@ -7,7 +7,9 @@ function monsterList() {
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
         txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        if (filter === "") {
+            li[i].style.display = "none";
+        } else if (txtValue.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
         } else {
             li[i].style.display = "none";
@@ -66,7 +68,6 @@ async function addPlayer() {
 
 
 async function showMonster(monsterName) {
-
     let url = "/restservices/monsters/monster/" + monsterName;
 
     let monster;
@@ -121,13 +122,23 @@ async function showMonsters() {
         contentStr += "<li>" + "<a onclick=\"showMonster(\'" + o + "\')\">" + o + "</a>" + "</li>"
     });
     document.getElementById("monster-list").innerHTML = contentStr;
+    monsterList();
 }
 
-function deletePlayer(playerName) {
-    let url = "/restservices/players/" + playerName;
-    fetch(url, {
-        method: 'DELETE'
+async function deletePlayer(playerName) {
+    const response = await fetch("/restservices/players/" + playerName, {
+        method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+        headers: {
+        },
+    }).then(function (response) {
+        console.log(typeof response);
+    }).then(function (body) {
+        console.log(body);
     });
+    // let url = "/restservices/players/" + playerName;
+    // fetch(url, {
+    //     method: 'DELETE'
+    // });
     showPlayers();
 }
 
@@ -135,10 +146,10 @@ function deleteMonster(monsterName) {
     let element = document.getElementById(monsterName);
     element.parentNode.removeChild(element);
 
-    // let url = "/restservices/monsters/" + monsterName;
-    // fetch(url, {
-    //     method: 'DELETE'
-    // });
+    let url = "/restservices/monsters/" + monsterName;
+    fetch(url, {
+        method: 'DELETE'
+    });
 }
 
 function openAddPlayerDialog(){

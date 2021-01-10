@@ -35,6 +35,15 @@ body {
     background: linear-gradient(-135deg, #F2E6CC, #F7F1E3);
 }
 
+#monster-list {
+    height: 469px;
+    overflow: hidden;
+}
+
+#monster-list li {
+    height: 48px;
+}
+
 .players {
     background: linear-gradient(-135deg, #F2E6CC, #F7F1E3);
     grid-area: player;

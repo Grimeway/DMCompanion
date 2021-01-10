@@ -2,25 +2,21 @@ package domain.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import domain.model.*;
 
-import javax.json.Json;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @WebListener
 public class MyContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        SaveFile.getSaveFile().getPlayerList().add(new Player("grimeway", "Human", "Paladin", 15, 18, 14, 1));
+        SaveFile.getSaveFile().getPlayerList().add(new Player("dennis", "Human", "Paladin", 15, 18, 14, 1));
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -38,8 +34,14 @@ public class MyContextListener implements ServletContextListener {
 //        File logins = new File("Logins.json");
 
         try {
-            userList = mapper.readValue(new File("C:\\Users\\mkwan\\Documents\\School\\HBO ICT\\Vakken\\IPASS\\DMCompanion\\src\\main\\java\\domain\\model\\Logins.json"), new TypeReference<List<User>>(){});
+            userList = mapper.readValue(new File("C:\\Users\\Michel\\Documents\\School\\School\\HBO ICT\\Vakken\\IPASS\\DM companion\\src\\main\\resources\\Logins.json"), new TypeReference<List<User>>(){});
         } catch (IOException e) {
+            File file = new File("C:\\Users\\Michel\\Documents\\School\\School\\HBO ICT\\Vakken\\IPASS\\DM companion\\src\\main\\resources\\Logins.json");
+            try {
+                System.out.println("Attempting to read from file in: " + file.getCanonicalPath());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
         }
 

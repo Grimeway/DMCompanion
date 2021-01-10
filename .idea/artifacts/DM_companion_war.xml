@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="DM companion:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>DM companion</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="DM companion-1.0.war">
+      <element id="artifact" artifact-name="DM companion:war exploded" />
+    </root>
+  </artifact>
+</component>
