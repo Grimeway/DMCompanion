@@ -46,4 +46,32 @@ public class Player {
     public int getPlayerInitiative() {
         return playerInitiative;
     }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public void setPlayerRace(String playerRace) {
+        this.playerRace = playerRace;
+    }
+
+    public void setPlayerClass(String playerClass) {
+        this.playerClass = playerClass;
+    }
+
+    public void setPlayerHealth(int playerHealth) {
+        this.playerHealth = playerHealth;
+    }
+
+    public void setPlayerAC(int playerAC) {
+        this.playerAC = playerAC;
+    }
+
+    public void setPlayerPP(int playerPP) {
+        this.playerPP = playerPP;
+    }
+
+    public void setPlayerInitiative(int playerInitiative) {
+        this.playerInitiative = playerInitiative;
+    }
 }

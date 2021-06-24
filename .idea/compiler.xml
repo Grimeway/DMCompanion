@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="DM companion" target="13" />
+      <module name="DM companion" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

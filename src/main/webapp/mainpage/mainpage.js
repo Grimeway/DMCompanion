@@ -25,14 +25,16 @@ async function showPlayers() {
 
 
     myJson.forEach(function (o){
-        contentStr += "<div style='border: 2px solid black'>" + "<b>Name: </b>" + o.playerName + "<br>" +
-            "<b>Race: </b>" + o.playerRace + "<br>" +
-            "<b>Class: </b>" + o.playerClass + "<br>" +
-            "<b>Health: </b>" + o.playerHealth + "<br>" +
-            "<b>AC: </b>" + o.playerAC + "<br>" +
-            "<b>PP: </b>" + o.playerPP + "<br>" +
-            "<b>Initiative: </b>" + o.playerInitiative + "<br>" +
+        contentStr += "<div class='\"" + o.playerName + "\"' style='border: 2px solid black'>" +
+            "<b id='" + o.playerName + "edit" + "'>Name: </b>" + o.playerName + "<br>" +
+            "<b id='" + o.playerRace + "edit" + "'>Race: </b>" + o.playerRace + "<br>" +
+            "<b id='" + o.playerClass + "edit" + "'>Class: </b>" + o.playerClass + "<br>" +
+            "<b id='" + o.playerHealth + "edit" + "'>Health: </b>" + o.playerHealth + "<br>" +
+            "<b id='" + o.playerAC + "edit" + "'>AC: </b>" + o.playerAC + "<br>" +
+            "<b id='" + o.playerPP + "edit" + "'>PP: </b>" + o.playerPP + "<br>" +
+            "<b id='" + o.playerInitiative + "edit" + "'>Initiative: </b>" + o.playerInitiative + "<br>" +
             "<button onclick='deletePlayer(\"" + o.playerName + "\")'>Delete Player</button>" +
+            "<button onclick='openEditPlayerDialog(\"" + o.playerName + "\", \"" + o.playerRace + "\", \"" + o.playerClass + "\", \"" + o.playerHealth + "\", \"" + o.playerAC + "\", \"" + o.playerPP + "\", \"" + o.playerInitiative + "\")'>Edit Player</button>" +
             "</div>" + "<br>";
     });
     document.getElementById("player-container").innerHTML = contentStr;
@@ -62,6 +64,49 @@ async function addPlayer() {
         console.log(body);
     });
     closeDialog();
+    showPlayers();
+    return response;
+}
+
+function openEditPlayerDialog(playerName, playerRace, playerClass, playerHealth, playerAc, playerPp, PlayerInitiative){
+    document.getElementById("playerNameEdit").value = playerName;
+    document.getElementById("playerRaceEdit").value = playerRace;
+    document.getElementById("playerClassEdit").value = playerClass;
+    document.getElementById("playerHealthEdit").value = playerHealth;
+    document.getElementById("playerACEdit").value = playerAc;
+    document.getElementById("playerPPEdit").value = playerPp;
+    document.getElementById("playerInitiativeEdit").value = PlayerInitiative;
+    document.getElementById("edit-player").show();
+}
+
+function closeEditPlayerDialog(){
+    document.getElementById("edit-player").close();
+}
+
+async function editPlayer(){
+    let url = "/restservices/players/edit-player"
+    let data = {
+        "playerName": (document.getElementById("playerNameEdit").value),
+        "playerRace": (document.getElementById("playerRaceEdit").value),
+        "playerClass": (document.getElementById("playerClassEdit").value),
+        "playerHealth": (document.getElementById("playerHealthEdit").value),
+        "playerAC" : (document.getElementById("playerACEdit").value),
+        "playerPP" : (document.getElementById("playerPPEdit").value),
+        "playerInitiative" : (document.getElementById("playerInitiativeEdit").value)
+    };
+
+    const response = await fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+    }).then(function (response) {
+        console.log(typeof response);
+    }).then(function (body) {
+        console.log(body);
+    });
+    closeEditPlayerDialog();
     showPlayers();
     return response;
 }

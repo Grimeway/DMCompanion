@@ -50,9 +50,8 @@ public class UserManager {
     public void writeToFile() {
         ObjectMapper mapper = new ObjectMapper();
 
-
         try {
-            mapper.writeValue(new File("C:\\Users\\mkwan\\Documents\\School\\HBO ICT\\Vakken\\IPASS\\DMCompanion\\src\\main\\java\\domain\\model\\Logins.json"), allUsers);
+            mapper.writeValue(new File("C:\\Users\\Michel\\Documents\\HBO ICT\\Vakken\\IPASS\\DmCompanion\\src\\main\\resources\\Logins.json"), allUsers);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
