@@ -64,11 +64,24 @@
             <input type="text" id="playerClass" name="class" placeholder="Player Class"><br>
             <input type="number" id="playerHealth" name="health" placeholder="Player Health"><br>
             <input type="number" id="playerAC" name="ac" placeholder="Player Armor Class"><br>
-            <input type="number" id="playerPP" name="pp" placeholder="Player Pasive Perception"><br>
+            <input type="number" id="playerPP" name="pp" placeholder="Player Passive Perception"><br>
             <input type="number" id="playerInitiative" name="initiative" placeholder="Player initiative"><br>
 
             <button type="button" onclick="addPlayer()">Add Player</button>
             <button type="button" onclick="closeDialog()">Close</button>
+        </dialog>
+
+        <dialog id="edit-player">
+            <input type="text" id="playerNameEdit" name="name" placeholder="Player Name" value=""><br>
+            <input type="text" id="playerRaceEdit" name="race" placeholder="Player Race" value=""><br>
+            <input type="text" id="playerClassEdit" name="class" placeholder="Player Class" value=""><br>
+            <input type="number" id="playerHealthEdit" name="health" placeholder="Player Health" value=""><br>
+            <input type="number" id="playerACEdit" name="ac" placeholder="Player Armor Class" value=""><br>
+            <input type="number" id="playerPPEdit" name="pp" placeholder="Player Passive Perception" value=""><br>
+            <input type="number" id="playerInitiativeEdit" name="initiative" placeholder="Player initiative" value=""><br>
+
+            <button type="button" onclick="editPlayer()">Edit Player</button>
+            <button type="button" onclick="closeEditPlayerDialog()">Close</button>
         </dialog>
 
     </div>

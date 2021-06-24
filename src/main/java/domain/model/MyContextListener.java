@@ -16,15 +16,14 @@ import java.util.List;
 public class MyContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        SaveFile.getSaveFile().getPlayerList().add(new Player("dennis", "Human", "Paladin", 15, 18, 14, 1));
-
         ObjectMapper mapper = new ObjectMapper();
 
         ArrayList<Monster> monsters = null;
         List<Monster> monsterList = null;
 
         try {
-            monsterList = mapper.readValue(new URL("https://dl.dropboxusercontent.com/s/iwz112i0bxp2n4a/5e-SRD-Monsters.json"), new TypeReference<List<Monster>>(){});
+            monsterList = mapper.readValue(new URL("https://dl.dropboxusercontent.com/s/iwz112i0bxp2n4a/5e-SRD-Monsters.json"), new TypeReference<List<Monster>>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,9 +33,10 @@ public class MyContextListener implements ServletContextListener {
 //        File logins = new File("Logins.json");
 
         try {
-            userList = mapper.readValue(new File("C:\\Users\\Michel\\Documents\\School\\School\\HBO ICT\\Vakken\\IPASS\\DM companion\\src\\main\\resources\\Logins.json"), new TypeReference<List<User>>(){});
+            userList = mapper.readValue(new File("C:\\Users\\Michel\\Documents\\HBO ICT\\Vakken\\IPASS\\DmCompanion\\src\\main\\resources\\Logins.json"), new TypeReference<List<User>>() {
+            });
         } catch (IOException e) {
-            File file = new File("C:\\Users\\Michel\\Documents\\School\\School\\HBO ICT\\Vakken\\IPASS\\DM companion\\src\\main\\resources\\Logins.json");
+            File file = new File("C:\\Users\\Michel\\Documents\\HBO ICT\\Vakken\\IPASS\\DmCompanion\\src\\main\\resources\\Logins.json");
             try {
                 System.out.println("Attempting to read from file in: " + file.getCanonicalPath());
             } catch (IOException ex) {
@@ -46,10 +46,6 @@ public class MyContextListener implements ServletContextListener {
         }
 
         UserManager.setAllUsers(new ArrayList<User>(userList));
-
-
-
-
 
     }
 
