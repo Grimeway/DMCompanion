@@ -10,8 +10,6 @@ async function getInfo() {
     } else {
         document.getElementById("error-message").innerHTML = "Wrong Username or password";
     }
-
-
 }
 
 async function createNewAccount() {
