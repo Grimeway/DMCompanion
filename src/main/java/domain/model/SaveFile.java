@@ -64,8 +64,18 @@ public class SaveFile {
     }
 
 
-    public void removePlayer(String playerName) {
-        playerList.removeIf(player -> player.getPlayerName().equals(playerName));
+    public boolean removePlayer(String playerName) {
+        ObjectMapper mapper = new ObjectMapper();
+
+        if (playerList.removeIf(player -> player.getPlayerName().equals(playerName))) {
+            try {
+                mapper.writeValue(new File("C:\\Users\\Michel\\Documents\\HBO ICT\\Vakken\\IPASS\\DmCompanion\\src\\main\\java\\domain\\model\\players.json"), playerList);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false;
+
     }
 
 }

@@ -16,6 +16,9 @@ import java.util.List;
 public class MyContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+
+
+
         ObjectMapper mapper = new ObjectMapper();
 
         ArrayList<Monster> monsters = null;
@@ -30,7 +33,6 @@ public class MyContextListener implements ServletContextListener {
         MonsterManager.setAllMonsters(new ArrayList<Monster>(monsterList));
 
         List<User> userList = null;
-//        File logins = new File("Logins.json");
 
         try {
             userList = mapper.readValue(new File("C:\\Users\\Michel\\Documents\\HBO ICT\\Vakken\\IPASS\\DmCompanion\\src\\main\\resources\\Logins.json"), new TypeReference<List<User>>() {

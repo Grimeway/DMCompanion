@@ -76,7 +76,10 @@ public class PlayerResource {
 
     @DELETE
     @Path("/{id}")
-    public void deletePlayer(@PathParam("id") String playerName) {
-        SaveFile.getSaveFile().removePlayer(playerName);
+    public Response deletePlayer(@PathParam("id") String playerName) {
+        if (SaveFile.getSaveFile().removePlayer(playerName)) {
+            return Response.ok("Player deleted").build();
+        }
+        return Response.status(409).build();
     }
 }

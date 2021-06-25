@@ -9,12 +9,8 @@ import java.util.ArrayList;
 public class User {
     private String login;
     private String password;
+    private String token;
 
-    @JsonCreator
-    public User(@JsonProperty("login") String login, @JsonProperty("password") String password) {
-        this.login = login;
-        this.password = password;
-    }
 
     public String getLogin() {
         return login;
@@ -30,5 +26,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
