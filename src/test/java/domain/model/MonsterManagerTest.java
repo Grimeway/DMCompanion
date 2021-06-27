@@ -2,47 +2,37 @@ package domain.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import junit.framework.TestCase;
+import org.junit.Assert;
 
+import javax.validation.constraints.AssertTrue;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+public class MonsterManagerTest extends TestCase {
 
-class MonsterManagerTest {
-    private ArrayList<Monster> monsterList = new ArrayList<>();
+    List<Monster> monsterList = null;
 
-    public void setMonsterList(ArrayList<Monster> monsterList) {
-        this.monsterList = monsterList;
-    }
 
-    public ArrayList<Monster> getMonsterList() {
-        return monsterList;
-    }
-
-    @BeforeEach
-    public void init() {
+    public void setUp() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        ArrayList<Monster> monsterList = new ArrayList<>();
+
         try {
             monsterList = mapper.readValue(new URL("https://dl.dropboxusercontent.com/s/iwz112i0bxp2n4a/5e-SRD-Monsters.json"), new TypeReference<List<Monster>>() {
             });
-            setMonsterList(monsterList);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        MonsterManager.setAllMonsters(new ArrayList<Monster>(monsterList));
+        super.setUp();
     }
 
-    @Test
-    @DisplayName("testing getMonster method")
-    void testGetMonster() {
+
+    public void testGetMonster() {
         Monster monster = MonsterManager.getMonster("Imp");
-        assert monster != null;
+        assertEquals("Imp", monster.getName());
     }
+
 }

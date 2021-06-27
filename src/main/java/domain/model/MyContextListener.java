@@ -19,12 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 @WebListener
 public class MyContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-
 
 
         ObjectMapper mapper = new ObjectMapper();
@@ -43,58 +41,20 @@ public class MyContextListener implements ServletContextListener {
 
         List<User> userList = null;
 
-        try(InputStream in=Thread.currentThread().getContextClassLoader().getResourceAsStream("Logins.json")){
+        try (InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("Logins.json")) {
             //pass InputStream to JSON-Library, e.g. using Jackson
             JsonNode jsonNode = mapper.readValue(in,
                     JsonNode.class);
             String jsonString = mapper.writeValueAsString(jsonNode);
             System.out.println(jsonString);
-            userList = mapper.readValue(jsonString, new TypeReference<List<User>>(){});
-        }
-        catch(Exception e){
+            userList = mapper.readValue(jsonString, new TypeReference<List<User>>() {
+            });
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-//        JSONParser jsonParser = new JSONParser();
-//
-//        try (FileReader reader = new FileReader("../Logins.json"))
-//        {
-//            //Read JSON file
-//            Object obj = jsonParser.parse(reader);
-//
-//            JSONArray loginList = (JSONArray) obj;
-//            System.out.println(loginList);
-//
-//
-//
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
-
-//        try {
-//            userList = mapper.readValue(new File("Logins.json"), new TypeReference<List<User>>() {
-//            });
-//        } catch (IOException e) {
-//            File file = new File("Logins.json");
-//            try {
-//                System.out.println("Attempting to read from file in: " + file.getCanonicalPath());
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-//            e.printStackTrace();
-//        }
-//
         UserManager.setAllUsers(new ArrayList<User>(userList));
 
-//    }
 
-}
+    }
 }

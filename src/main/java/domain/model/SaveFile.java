@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class SaveFile {
     private ArrayList<Player> playerList = new ArrayList<>();
     private static SaveFile saveFile = new SaveFile();
-//    private JSONObject savePlayerList = new JSONObject();
 
     public void setPlayerList(ArrayList<Player> playerList) {
         this.playerList = playerList;
@@ -27,10 +26,6 @@ public class SaveFile {
     }
 
     public ArrayList<Player> getPlayerList() {
-        for(Player player : playerList) {
-            System.out.println(player.getPlayerName());
-            System.out.println(player.getPlayerRace());
-        }
         return playerList;
     }
 
