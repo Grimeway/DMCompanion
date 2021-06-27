@@ -6,11 +6,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 @WebListener
 public class MyContextListener implements ServletContextListener {
@@ -34,20 +37,40 @@ public class MyContextListener implements ServletContextListener {
 
         List<User> userList = null;
 
-//        try {
-//            userList = mapper.readValue(new File("domain//model//Logins.json"), new TypeReference<List<User>>() {
-//            });
-//        } catch (IOException e) {
-//            File file = new File("domain//model//Logins.json");
-//            try {
-//                System.out.println("Attempting to read from file in: " + file.getCanonicalPath());
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-//            e.printStackTrace();
-//        }
+//        File file = new File(".");
+//        for(String fileNames : file.list()) System.out.println(fileNames);
 
-        //UserManager.setAllUsers(new ArrayList<User>(userList));
+//        File file = new File("")
+//
+//        InputStream idk = Thread.currentThread().getContextClassLoader().getResourceAsStream("src/Logins.json");
+//
+//        StringBuilder textbuilder = new StringBuilder();
+//        try (Reader reader = new BufferedReader(new InputStreamReader(idk, Charset.forName(StandardCharsets.UTF_8.name())))) {
+//            int c = 0;
+//            while ((c = reader.read()) != -1) {
+//                textbuilder.append((char) c);
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//
+//        System.out.println(textbuilder);
+
+
+        try {
+            userList = mapper.readValue(new File("Logins.json"), new TypeReference<List<User>>() {
+            });
+        } catch (IOException e) {
+            File file = new File("Logins.json");
+            try {
+                System.out.println("Attempting to read from file in: " + file.getCanonicalPath());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+
+        UserManager.setAllUsers(new ArrayList<User>(userList));
 
     }
 
