@@ -24,7 +24,7 @@ async function showPlayers() {
     let contentStr = "";
 
 
-    myJson.forEach(function (o){
+    myJson.forEach(function (o) {
         contentStr += "<div class='\"" + o.playerName + "\"' style='border: 2px solid black'>" +
             "<b id='" + o.playerName + "edit" + "'>Name: </b>" + o.playerName + "<br>" +
             "<b id='" + o.playerRace + "edit" + "'>Race: </b>" + o.playerRace + "<br>" +
@@ -46,9 +46,9 @@ async function addPlayer() {
         "playerRace": (document.getElementById("playerRace").value),
         "playerClass": (document.getElementById("playerClass").value),
         "playerHealth": (document.getElementById("playerHealth").value),
-        "playerAC" : (document.getElementById("playerAC").value),
-        "playerPP" : (document.getElementById("playerPP").value),
-        "playerInitiative" : (document.getElementById("playerInitiative").value)
+        "playerAC": (document.getElementById("playerAC").value),
+        "playerPP": (document.getElementById("playerPP").value),
+        "playerInitiative": (document.getElementById("playerInitiative").value)
     };
 
     const response = await fetch("/restservices/players/player", {
@@ -68,8 +68,9 @@ async function addPlayer() {
     return response;
 }
 
-function openEditPlayerDialog(playerName, playerRace, playerClass, playerHealth, playerAc, playerPp, PlayerInitiative){
+function openEditPlayerDialog(playerName, playerRace, playerClass, playerHealth, playerAc, playerPp, PlayerInitiative) {
     document.getElementById("playerNameEdit").value = playerName;
+
     document.getElementById("playerRaceEdit").value = playerRace;
     document.getElementById("playerClassEdit").value = playerClass;
     document.getElementById("playerHealthEdit").value = playerHealth;
@@ -79,20 +80,20 @@ function openEditPlayerDialog(playerName, playerRace, playerClass, playerHealth,
     document.getElementById("edit-player").show();
 }
 
-function closeEditPlayerDialog(){
+function closeEditPlayerDialog() {
     document.getElementById("edit-player").close();
 }
 
-async function editPlayer(){
+async function editPlayer() {
     let url = "/restservices/players/edit-player"
     let data = {
         "playerName": (document.getElementById("playerNameEdit").value),
         "playerRace": (document.getElementById("playerRaceEdit").value),
         "playerClass": (document.getElementById("playerClassEdit").value),
         "playerHealth": (document.getElementById("playerHealthEdit").value),
-        "playerAC" : (document.getElementById("playerACEdit").value),
-        "playerPP" : (document.getElementById("playerPPEdit").value),
-        "playerInitiative" : (document.getElementById("playerInitiativeEdit").value)
+        "playerAC": (document.getElementById("playerACEdit").value),
+        "playerPP": (document.getElementById("playerPPEdit").value),
+        "playerInitiative": (document.getElementById("playerInitiativeEdit").value)
     };
 
     const response = await fetch(url, {
@@ -129,7 +130,7 @@ async function showMonster(monsterName) {
             "<b>Sub Type: </b>" + monster.subtype + "<br>" +
             "<b>Alignment: </b>" + monster.alignment + "<br>" +
             "<b>Armor Class: </b>" + monster.armor_class + "<br>" +
-            "<b>Hit Points: </b>" + "<input type='number' value='" + monster.hit_points + "'>" + "<br>" +            "<b>Hit Dice: </b>" + monster.hit_dice + "<br>" +
+            "<b>Hit Points: </b>" + "<input type='number' value='" + monster.hit_points + "'>" + "<br>" + "<b>Hit Dice: </b>" + monster.hit_dice + "<br>" +
             "<b>Speed: </b>" + monster.speed + "<br>" +
             "<b>Strength: </b>" + monster.strength + "<br>" +
             "<b>Dexterity: </b>" + monster.dexterity + "<br>" +
@@ -152,7 +153,7 @@ async function showMonster(monsterName) {
             "<b>Challenge Rating: </b>" + monster.challenge_rating + "<br>" +
             "<button onclick='deleteMonster(\"" + monster.name + "\")'>Delete Monster</button>" +
             "</div>";
-    document.getElementById("monster-container").innerHTML += contentStr;
+        document.getElementById("monster-container").innerHTML += contentStr;
     });
 }
 
@@ -163,7 +164,7 @@ async function showMonsters() {
 
     let contentStr = "";
 
-    myJson.forEach(function (o){
+    myJson.forEach(function (o) {
         contentStr += "<li>" + "<a onclick=\"showMonster(\'" + o + "\')\">" + o + "</a>" + "</li>"
     });
     document.getElementById("monster-list").innerHTML = contentStr;
@@ -173,17 +174,12 @@ async function showMonsters() {
 async function deletePlayer(playerName) {
     const response = await fetch("/restservices/players/" + playerName, {
         method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-        },
+        headers: {},
     }).then(function (response) {
         console.log(typeof response);
     }).then(function (body) {
         console.log(body);
     });
-    // let url = "/restservices/players/" + playerName;
-    // fetch(url, {
-    //     method: 'DELETE'
-    // });
     showPlayers();
 }
 
@@ -197,7 +193,7 @@ function deleteMonster(monsterName) {
     });
 }
 
-function openAddPlayerDialog(){
+function openAddPlayerDialog() {
     document.getElementById("add-player").show();
 }
 

@@ -6,7 +6,7 @@ async function getInfo() {
     console.log(myJson);
 
     if (myJson) {
-        window.location.href = "http://localhost:8080/mainpage/mainpage.html";
+        window.location.href = "https://dm-companion1.herokuapp.com/mainpage/mainpage.html";
     } else {
         document.getElementById("error-message").innerHTML = "Wrong Username or password";
     }
