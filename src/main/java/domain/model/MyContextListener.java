@@ -1,7 +1,12 @@
 package domain.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -27,6 +32,7 @@ public class MyContextListener implements ServletContextListener {
         ArrayList<Monster> monsters = null;
         List<Monster> monsterList = null;
 
+
         try {
             monsterList = mapper.readValue(new URL("https://dl.dropboxusercontent.com/s/iwz112i0bxp2n4a/5e-SRD-Monsters.json"), new TypeReference<List<Monster>>() {
             });
@@ -37,41 +43,58 @@ public class MyContextListener implements ServletContextListener {
 
         List<User> userList = null;
 
-//        File file = new File(".");
-//        for(String fileNames : file.list()) System.out.println(fileNames);
-
-//        File file = new File("")
-//
-//        InputStream idk = Thread.currentThread().getContextClassLoader().getResourceAsStream("src/Logins.json");
-//
-//        StringBuilder textbuilder = new StringBuilder();
-//        try (Reader reader = new BufferedReader(new InputStreamReader(idk, Charset.forName(StandardCharsets.UTF_8.name())))) {
-//            int c = 0;
-//            while ((c = reader.read()) != -1) {
-//                textbuilder.append((char) c);
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//
-//        System.out.println(textbuilder);
-
-
-        try {
-            userList = mapper.readValue(new File("Logins.json"), new TypeReference<List<User>>() {
-            });
-        } catch (IOException e) {
-            File file = new File("Logins.json");
-            try {
-                System.out.println("Attempting to read from file in: " + file.getCanonicalPath());
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            e.printStackTrace();
+        try(InputStream in=Thread.currentThread().getContextClassLoader().getResourceAsStream("Logins.json")){
+            //pass InputStream to JSON-Library, e.g. using Jackson
+            JsonNode jsonNode = mapper.readValue(in,
+                    JsonNode.class);
+            String jsonString = mapper.writeValueAsString(jsonNode);
+            System.out.println(jsonString);
+            userList = mapper.readValue(jsonString, new TypeReference<List<User>>(){});
+        }
+        catch(Exception e){
+            throw new RuntimeException(e);
         }
 
+//        JSONParser jsonParser = new JSONParser();
+//
+//        try (FileReader reader = new FileReader("../Logins.json"))
+//        {
+//            //Read JSON file
+//            Object obj = jsonParser.parse(reader);
+//
+//            JSONArray loginList = (JSONArray) obj;
+//            System.out.println(loginList);
+//
+//
+//
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
+
+//        try {
+//            userList = mapper.readValue(new File("Logins.json"), new TypeReference<List<User>>() {
+//            });
+//        } catch (IOException e) {
+//            File file = new File("Logins.json");
+//            try {
+//                System.out.println("Attempting to read from file in: " + file.getCanonicalPath());
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+//            e.printStackTrace();
+//        }
+//
         UserManager.setAllUsers(new ArrayList<User>(userList));
 
-    }
+//    }
 
+}
 }
