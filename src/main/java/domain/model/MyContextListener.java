@@ -34,20 +34,20 @@ public class MyContextListener implements ServletContextListener {
 
         List<User> userList = null;
 
-        try {
-            userList = mapper.readValue(new File("C:\\Users\\Michel\\Documents\\HBO ICT\\Vakken\\IPASS\\DmCompanion\\src\\main\\resources\\Logins.json"), new TypeReference<List<User>>() {
-            });
-        } catch (IOException e) {
-            File file = new File("C:\\Users\\Michel\\Documents\\HBO ICT\\Vakken\\IPASS\\DmCompanion\\src\\main\\resources\\Logins.json");
-            try {
-                System.out.println("Attempting to read from file in: " + file.getCanonicalPath());
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            e.printStackTrace();
-        }
+//        try {
+//            userList = mapper.readValue(new File("domain//model//Logins.json"), new TypeReference<List<User>>() {
+//            });
+//        } catch (IOException e) {
+//            File file = new File("domain//model//Logins.json");
+//            try {
+//                System.out.println("Attempting to read from file in: " + file.getCanonicalPath());
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+//            e.printStackTrace();
+//        }
 
-        UserManager.setAllUsers(new ArrayList<User>(userList));
+        //UserManager.setAllUsers(new ArrayList<User>(userList));
 
     }
 
